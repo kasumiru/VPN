@@ -3,13 +3,10 @@ FROM debian:sid
 RUN set -ex\
     && apt update -y \
     && apt upgrade -y \
-    && apt install -y wget unzip qrencode\
-    && apt install -y shadowsocks-libev\
-    && apt install -y nginx\
+    && apt install -y python3 python3-pip\
+    && python3 -m pip install jupyter\
     && apt autoremove -y
 
-COPY wwwroot.tar.gz /wwwroot/wwwroot.tar.gz
-COPY conf/ /conf
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
